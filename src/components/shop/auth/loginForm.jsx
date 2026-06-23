@@ -1,55 +1,54 @@
 'use client'
 
 import React, { useState } from 'react'
-import { isEmpty, validateRegister } from '@/utils/validators'
-import { register } from '@/services/authService'
+import { isEmpty, validateLogin } from '@/utils/validators'
+import { login } from '@/services/authService'
 import { useRouter } from 'next/navigation'
+import { useContext } from 'react'
+import { AuthContext } from '@/context/AuthProvider'
+
 
 /**
  * RegisterForm component
  */
 
-export default function RegisterForm(props) {
+export default function LoginForm(props) {
   const [username, setUsername] = useState('')
-  const [fullname, setFullname] = useState('')
-  const [email, setEmail] = useState('')
   const [pass, setPass] = useState('')
-  const [confirm_password, setConfirm_password] = useState('')
   const [errors, setErrors] = useState({})
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
   const router = useRouter();
+  const { user, setUser} = useContext(AuthContext);
 
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const validateErrors = validateRegister({
+    const validateErrors = validateLogin({
       username,
-      fullname,
-      email,
-      pass,
-      confirm_password,
+      pass
+
     })
     setErrors(validateErrors);
     if(!isEmpty(validateErrors)) return;
 
     let data = {
         username,
-        fullname,
-        email,
         pass,
     }
     try{
         setLoading(true);
-        let res = await register(data);
+        let res = await login(data);
         console.log(res)
-        setSuccess("Register success")
+        setSuccess("Login success")
+        setUser(res.user);
         setTimeout(() => {
-            router.push('/login')
-        }, 2000);
+          if(res.user.user_type=="admin") router.push("/admin")
+            else router.push("/");
+        }, 1000);
     }
     catch(e) {
-        setErrors({ message: e.data?.error || e.message || 'Register failed' })
+        setErrors({ message: e.data?.error || e.message || 'Login failed' })
     }
     finally {
         setLoading(false)
@@ -92,35 +91,6 @@ export default function RegisterForm(props) {
           />
         </div>
 
-        <div>
-          <label htmlFor="fullname" className="block text-sm font-medium text-gray-700 mb-1">
-            Full Name
-          </label>
-          {errors.fullname && <p className="text-sm text-red-500 mb-1">{errors.fullname}</p>}
-          <input
-            type="text"
-            value={fullname}
-            id="fullname"
-            name="fullname"
-            onChange={(e) => setFullname(e.target.value)}
-            className="w-full rounded-lg border border-gray-300 px-4 py-2 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
-          />
-        </div>
-
-        <div>
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-            Email
-          </label>
-          {errors.email && <p className="text-sm text-red-500 mb-1">{errors.email}</p>}
-          <input
-            type="email"
-            value={email}
-            id="email"
-            name="email"
-            onChange={(e) => setEmail(e.target.value)}
-            className="w-full rounded-lg border border-gray-300 px-4 py-2 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
-          />
-        </div>
 
         <div>
           <label htmlFor="pass" className="block text-sm font-medium text-gray-700 mb-1">
@@ -137,29 +107,13 @@ export default function RegisterForm(props) {
           />
         </div>
 
-        <div>
-          <label htmlFor="confirm_password" className="block text-sm font-medium text-gray-700 mb-1">
-            Confirm Password
-          </label>
-          {errors.confirm_password && (
-            <p className="text-sm text-red-500 mb-1">{errors.confirm_password}</p>
-          )}
-          <input
-            type="password"
-            value={confirm_password}
-            id="confirm_password"
-            name="confirm_password"
-            onChange={(e) => setConfirm_password(e.target.value)}
-            className="w-full rounded-lg border border-gray-300 px-4 py-2 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
-          />
-        </div>
 
         <button
           type="submit"
           disabled={loading}
           className="w-full rounded-lg bg-blue-600 py-2.5 text-white font-semibold hover:bg-blue-700 transition disabled:opacity-60 disabled:cursor-not-allowed"
         >
-          {loading ? "Loading..." : "Register"}
+          {loading ? "Loading..." : "Login"}
         </button>
       </form>
     </div>

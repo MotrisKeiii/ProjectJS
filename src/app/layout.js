@@ -1,9 +1,13 @@
-import "./globals.css";
+"use client"
+import { AuthProvider } from '@/context/AuthProvider';
+import './globals.css';
 
 export default function RootLayout({ children }) {
   return (
     <html lang="vi">
-      <body>{children}</body>
+      <body>
+        <AuthProvider>{children}</AuthProvider>
+      </body>
     </html>
   );
 }

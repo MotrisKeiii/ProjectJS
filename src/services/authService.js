@@ -29,7 +29,6 @@ export const changePassword = async (data) => {
   return res.data;
 };
 export const logout = () => {
-  F;
   localStorage.removeItem("token");
   localStorage.removeItem("user");
   return { success: true, message: "Logout" };

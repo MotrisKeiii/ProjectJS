@@ -1,3 +1,4 @@
+import Userinfo from "./auth/Userinfo";
 import Menu from "./Menu";
 import { shopMenu } from "@/data/menu";
 
@@ -23,6 +24,7 @@ export default function Header() {
         >
           🛒 Cart
         </a>
+        <Userinfo />
       </div>
     </header>
   );
