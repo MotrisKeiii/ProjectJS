@@ -67,8 +67,8 @@ export const validateProduct = (data) => {
   }
 
   // cate_id
-  if (!Number.isInteger(Number(data.cate_id)) || Number(data.cate_id) <= 0) {
-    errors.cate_id = "Danh mục không hợp lệ";
+  if (!Number.isInteger(Number(data.cat_id)) || Number(data.cat_id) <= 0) {
+    errors.cat_id = "Danh mục không hợp lệ";
   }
 
   // brand_id

@@ -1,7 +1,11 @@
 import Table from "@/components/common/Table";
 
-export default function AdminTable({ columns, data }) {
+export default function AdminTable({ columns, data, onEdit, onDelete }) {
   const extendedColumns = [
+    {
+      key: "stt",
+      label: "STT",
+    },
     ...columns,
     {
       key: "actions",
@@ -9,15 +13,17 @@ export default function AdminTable({ columns, data }) {
     },
   ];
 
-  const tableData = data.map((item) => ({
+  const tableData = data.map((item, index) => ({
+    id: item.id || item.product_id,
+    stt: index+1, 
     ...item,
     actions: (
       <div className="flex gap-2">
-        <button className="px-3 py-1 text-sm bg-blue-500 text-white rounded-md hover:bg-blue-600">
+        <button onClick={() => { onEdit && onEdit(item)}} className="px-3 py-1 text-sm bg-blue-500 text-white rounded-md hover:bg-blue-600">
           Sửa
         </button>
 
-        <button className="px-3 py-1 text-sm bg-red-500 text-white rounded-md hover:bg-red-600">
+        <button onClick={() => { onDelete && onDelete(item )}} className="px-3 py-1 text-sm bg-red-500 text-white rounded-md hover:bg-red-600">
           Xóa
         </button>
       </div>

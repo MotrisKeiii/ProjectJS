@@ -10,21 +10,25 @@ import { AuthContext } from '@/context/AuthProvider';
 export default function AdminLayout({ children }) {
   const { user, authLoading } = useContext(AuthContext);
   const router = useRouter();
+  const userRole = user?.user_type ?? user?.userType ?? user?.role;
+  const isAdmin = String(userRole ?? '').toLowerCase() === 'admin';
 
   useEffect(() => {
     if (authLoading) return;
 
-    if (!user || user.user_type !== 'admin') {
-      router.push('/');
+    if (!user) {
+      router.replace('/login');
+    } else if (!isAdmin) {
+      router.replace('/');
     }
-  }, [user, authLoading, router]);
+  }, [user, authLoading, isAdmin, router]);
 
   if (authLoading) {
     return <p>Loading...</p>;
   }
 
-  if (!user || user.user_type !== 'admin') {
-    return null;
+  if (!user || !isAdmin) {
+    return <p className="p-6">Checking admin permission...</p>;
   }
 
   return (

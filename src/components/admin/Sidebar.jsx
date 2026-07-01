@@ -1,4 +1,5 @@
 import { adminMenu } from "@/data/adminMenu";
+import Link from "next/link";
 
 export default function Sidebar() {
   return (
@@ -7,13 +8,13 @@ export default function Sidebar() {
 
       <div className="space-y-2">
         {adminMenu.map((item) => (
-          <a
+          <Link
             key={item.href}
             href={item.href}
             className="block rounded-2xl px-4 py-3 text-sm font-bold text-slate-300 hover:bg-white/10 hover:text-white"
           >
             {item.label}
-          </a>
+          </Link>
         ))}
       </div>
     </aside>
