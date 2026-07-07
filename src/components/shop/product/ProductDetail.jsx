@@ -1,12 +1,4 @@
 export default function ProductDetail({ product }) {
-  if (!product) {
-    return (
-      <div className="rounded-3xl bg-white p-10 text-center shadow-md">
-        <p className="text-lg font-bold text-slate-700">Không tìm thấy sản phẩm</p>
-      </div>
-    );
-  }
-
   return (
     <div className="grid gap-10 rounded-3xl border border-slate-200 bg-white p-6 shadow-xl md:grid-cols-2 md:p-10">
       <div className="overflow-hidden rounded-3xl bg-slate-100">

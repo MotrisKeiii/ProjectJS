@@ -3,7 +3,7 @@
 import AdminTable from "@/components/admin/AdminTable";
 import { deleteProduct, getProducts } from "@/services/productService";
 import Link from "next/link";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Pagination from "@/components/common/Pagination";
 

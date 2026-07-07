@@ -1,19 +1,16 @@
 import ProductCard from "./ProductCard";
 
-export default function ProductList({ products }) {
-  if (!products.length) {
-    return (
-      <p className="rounded-lg bg-white px-4 py-6 text-center text-sm font-semibold text-slate-500 shadow-sm">
-        Không có sản phẩm.
-      </p>
-    );
-  }
-
+export default function ProductList({ products, title }) {
   return (
-    <div className="grid grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-      {products.map((p) => (
-        <ProductCard key={p.product_id} product={p} />
-      ))}
+    <div className="max-w-6xl mx-auto ">
+      <h1 className="text-2xl text-center font-bold mb-5">
+        {title}
+      </h1>
+      <div className="grid auto-rows-fr grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        {products.slice(0, 12).map((p) => (
+          <ProductCard key={p.product_id} product={p} />
+        ))}
+      </div>
     </div>
   );
 }

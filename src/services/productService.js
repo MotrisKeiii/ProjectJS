@@ -23,9 +23,9 @@ export const deleteProduct = async (id) => {
     const res = await axiosInstance.delete(`/products/${id}`);
     return res.data;
 }
-export const getNewProducts = async (params = {}) => {
+export const getNewProducts = async (limit = 4) => {
     const res = await axiosInstance.get("/products/new", {
-        params: params
+        params: { limit }
     });
     return res.data;
 }
