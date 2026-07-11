@@ -5,11 +5,13 @@ export default function AdminTable({ columns, data, onEdit, onDelete }) {
     {
       key: "stt",
       label: "STT",
+      width: "w-20",
     },
     ...columns,
     {
       key: "actions",
       label: "Action",
+      width: "w-44",
     },
   ];
 

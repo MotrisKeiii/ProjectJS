@@ -8,10 +8,10 @@ import { useRouter } from "next/navigation";
 import Pagination from "@/components/common/Pagination";
 
 const columns = [
-  { key: "product_id", label: "ID" },
+  { key: "product_id", label: "ID", width: "w-24" },
   { key: "product_name", label: "Product Name" },
-  { key: "price", label: "Price" },
-  { key: "status", label: "Status" },
+  { key: "price", label: "Price", width: "w-32" },
+  { key: "status", label: "Status", width: "w-28" },
 ];
 
 export default function AdminProductsPage() {

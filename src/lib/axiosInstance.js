@@ -23,10 +23,27 @@ axiosInstance.interceptors.request.use(
 axiosInstance.interceptors.response.use(
     (response) => response,
     (error) => {
+        let message = "Server error";
+        let status = 500;
+        let data = null;
+
+        if (error.response) {
+            data = error.response.data;
+            status = error.response.status;
+
+            if (data?.error) {
+                message = data.error;
+            } else if (data?.message) {
+                message = data.message;
+            }
+        } else if (error.message) {
+            message = error.message;
+        }
+
         const errorData = {
-            message: error.response?.data?.message || "Server error",
-            status: error.response?.data?.status || 500,
-            data: error.response?.data || null
+            message,
+            status,
+            data
         };
         return Promise.reject(errorData);
     }

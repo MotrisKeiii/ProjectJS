@@ -2,7 +2,7 @@
 
 import AdminHeader from '@/components/admin/AdminHeader';
 import Sidebar from '@/components/admin/Sidebar';
-import Footer from '@/components/shop/Footer';
+import AdminFooter from '@/components/admin/AdminFooter';
 import { useContext, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { AuthContext } from '@/context/AuthProvider';
@@ -38,7 +38,7 @@ export default function AdminLayout({ children }) {
         <Sidebar />
         <main className="flex-1 p-6">{children}</main>
       </div>
-      <Footer />
+      <AdminFooter />
     </div>
   );
 }

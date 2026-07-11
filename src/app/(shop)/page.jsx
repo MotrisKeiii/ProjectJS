@@ -85,7 +85,7 @@ export default function Page() {
   ];
 
   return (
-    <main className="min-h-screen bg-slate-50">
+    <div className="bg-slate-50">
       <div className="mx-auto max-w-[1440px] px-4 py-8 lg:px-6">
         <section className="mb-8 rounded-3xl border border-slate-200 bg-white px-6 py-8 shadow-sm">
           <p className="mb-2 text-sm font-semibold uppercase tracking-wide text-blue-600">
@@ -136,6 +136,6 @@ export default function Page() {
           </div>
         )}
       </div>
-    </main>
+    </div>
   );
 }

@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import CategorySelect from "@/components/common/CategorySelect";
 import BrandSelect from "@/components/common/BrandSelect";
+import UploadSingleFile from "@/components/admin/Upload";
 
 const CreateForm = (props) => {
 
@@ -76,7 +77,12 @@ const CreateForm = (props) => {
 
     };
 
-    createProduct
+    const handleUploadSuccess = (fileName) => {
+      setFormData((prev) => ({
+        ...prev,
+        image: fileName,
+      }));
+    };
 
     return (
         <>
@@ -153,7 +159,6 @@ const CreateForm = (props) => {
                         value={formData.detail}
                         onChange={handleChange}
                     />
-                    {/* Galaxy S24 Ultra với bút S-Pen, camera 200MP và hiệu năng mạnh mẽ. */}
                 </div>
 
                 {/* Price */}
@@ -200,6 +205,7 @@ const CreateForm = (props) => {
                     />
 
                 </div>
+                <UploadSingleFile onUploadSuccess={handleUploadSuccess} />
                 {/* <div>
                     <label className="block text-sm font-medium text-gray-700">
                         Hình ảnh

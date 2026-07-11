@@ -1,13 +1,13 @@
-"use client"
-import ProductDetail from "@/components/shop/product/ProductDetail";
-import { product } from "@/data/product";
-import { getProductById } from "@/services/productService";
-import { useState } from "react";
+"use client";
 
+import ProductDetail from "@/components/shop/product/ProductDetail";
+import { getProductById } from "@/services/productService";
+import { use, useEffect, useState } from "react";
+import Loading from "@/components/common/Loading";
 
 export default function ProductDetailPage({ params }) {
-  const { id } = params;
-  const [product, setProduct] = useState({});
+  const { id } = use(params);
+  const [product, setProduct] = useState(null);
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
 
@@ -15,33 +15,17 @@ export default function ProductDetailPage({ params }) {
     const fetchData = async () => {
       try {
         setLoading(true);
-        const data = await getProductById(id);
-        setProduct(data);
-      } catch (e) {
-        setErrors({ message: e.data });
+        setProduct(await getProductById(id));
+      } catch (error) {
+        setErrors({ message: error.data || "Không thể tải sản phẩm." });
       } finally {
         setLoading(false);
       }
     };
     fetchData();
-  }, []);
+  }, [id]);
 
-  return (
-    <main className="min-h-screen bg-slate-50 px-4 py-10">
-      <div className="mx-auto max-w-7xl">
-        <div className="mb-8 rounded-2xl bg-white p-6 shadow-sm">
-          <p className="text-sm font-medium text-blue-600">Chi tiết sản phẩm</p>
-          {errors.message ? (
-            <p className="mb-4 rounded-lg bg-red-50 px-4 py-3 text-sm font-semibold text-red-600">
-              {errors.message}
-            </p>
-          ) : null}
-          <h1 className="mt-2 text-3xl font-bold text-slate-900">
-            Product Detail: {id}
-          </h1>
-        </div>
-        {loading ? "loading..." : <ProductDetail product={product} /> }
-      </div>
-    </main>
-  );
+  if (loading) return <div className="min-h-screen bg-slate-50 px-5 py-10"><Loading /></div>;
+  if (errors.message) return <div className="min-h-screen bg-slate-50 px-5 py-10"><div className="mx-auto max-w-4xl rounded-xl border border-red-200 bg-red-50 p-4 text-red-700">{errors.message}</div></div>;
+  return <main className="min-h-screen bg-slate-50"><ProductDetail product={product} /></main>;
 }
