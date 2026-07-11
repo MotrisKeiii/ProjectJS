@@ -5,7 +5,13 @@ const formatPrice = (price) => Number(price || 0).toLocaleString("vi-VN");
 
 export default function CartItem({ item, onQuantityChange, onRemove }) {
   const details = [item.cat_name, item.brand_name].filter(Boolean).join(" • ");
-  const subtotal = Number(item.price || 0) * Number(item.quantity || 0);
+  let itemPrice = Number(item.price);
+
+  if (Number(item.sale_price) > 0 && Number(item.sale_price) < itemPrice) {
+    itemPrice = Number(item.sale_price);
+  }
+
+  const subtotal = itemPrice * Number(item.quantity);
 
   return (
     <div className="grid gap-4 p-4 transition-colors duration-200 hover:bg-slate-50 sm:p-5 lg:grid-cols-[minmax(220px,1fr)_100px_108px_120px_36px] lg:items-center lg:gap-3">
@@ -45,7 +51,7 @@ export default function CartItem({ item, onQuantityChange, onRemove }) {
           Đơn giá
         </span>
         <span className="text-sm font-semibold text-slate-700">
-          {formatPrice(item.price)}đ
+          {formatPrice(itemPrice)}đ
         </span>
       </div>
 

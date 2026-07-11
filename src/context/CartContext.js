@@ -48,7 +48,15 @@ export const CartProvider = ({ children }) => {
       ),
     );
   };
-  const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const total = cart.reduce((sum, item) => {
+    let itemPrice = Number(item.price);
+
+    if (Number(item.sale_price) > 0 && Number(item.sale_price) < itemPrice) {
+      itemPrice = Number(item.sale_price);
+    }
+
+    return sum + itemPrice * item.quantity;
+  }, 0);
   const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
   return (
     <CartContext.Provider
