@@ -7,7 +7,9 @@ export default function ShopLayout({ children }) {
     <>
       <CartProvider>
         <Header />
-        <main className="bg-slate-50">{children}</main>
+        <main className="min-h-screen bg-slate-50 text-slate-900 transition-colors dark:bg-slate-950 dark:text-slate-100">
+          {children}
+        </main>
         <Footer />
       </CartProvider>
     </>

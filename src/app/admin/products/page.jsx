@@ -62,7 +62,6 @@ export default function AdminProductsPage() {
         const data = await getProducts(params);
         setProducts(data.data);
         setTotalpages(data.totalPage || 0)
-        console.log(data)
       } catch (e) {
         setErrors({ message: e.data });
       } finally {

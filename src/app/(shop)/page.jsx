@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import ProductList from "@/components/shop/product/ProductList";
+import BannerSlider from "@/components/shop/BannerSlider";
 import {
   getBestSellerProducts,
   getNewProducts,
@@ -87,20 +88,7 @@ export default function Page() {
   return (
     <div className="bg-slate-50">
       <div className="mx-auto max-w-[1440px] px-4 py-8 lg:px-6">
-        <section className="mb-8 rounded-3xl border border-slate-200 bg-white px-6 py-8 shadow-sm">
-          <p className="mb-2 text-sm font-semibold uppercase tracking-wide text-blue-600">
-            HTSV Shop
-          </p>
-
-          <h1 className="text-2xl font-bold text-slate-900 md:text-3xl">
-            Khám phá sản phẩm nổi bật
-          </h1>
-
-          <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-500">
-            Tổng hợp những sản phẩm mới, bán chạy, được xem nhiều và đang hot
-            tại cửa hàng.
-          </p>
-        </section>
+        <BannerSlider />
 
         {error && (
           <div className="mb-6 rounded-2xl border border-red-200 bg-red-50 px-5 py-4 text-sm font-medium text-red-600">

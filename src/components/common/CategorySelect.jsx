@@ -1,6 +1,6 @@
 "use client"
 import { getCategories } from '@/services/categoryService';
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Select from './Select';
 
 export default function CategorySelect({ name, value, onChange }) {
@@ -14,7 +14,6 @@ export default function CategorySelect({ name, value, onChange }) {
                 setLoading(true)
                 const data = await getCategories({trash:0});
                 const list = Array.isArray(data) ? data : data?.data || data?.categories || [];
-                console.log("categories:", list);
                 setCategories(list);
 
             } 

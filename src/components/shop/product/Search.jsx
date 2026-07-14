@@ -73,7 +73,7 @@ export function HeaderProductSearch() {
       <button
         type="submit"
         aria-label="Tìm kiếm"
-        className="absolute inset-y-0 right-1.5 my-auto flex h-11 w-11 items-center justify-center rounded-full bg-blue-600 text-white shadow-md shadow-blue-200 transition hover:bg-blue-700"
+        className="absolute inset-y-0 right-1.5 my-auto flex h-11 w-11 items-center justify-center rounded-full bg-blue-600 text-white transition hover:bg-blue-700"
       >
         <SearchIcon className="h-5 w-5" />
       </button>

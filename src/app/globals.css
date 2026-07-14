@@ -13,6 +13,11 @@
 html {
   scroll-behavior: smooth;
   font-family: var(--font-sans);
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
 }
 
 body {
@@ -20,6 +25,71 @@ body {
   background: #f8fafc;
   color: #0f172a;
   font-family: var(--font-sans);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+html.dark body {
+  background: #172033;
+  color: #e2e8f0;
+}
+
+/*
+ * Dark-mode fallbacks for the shared shop UI. A number of pages still use
+ * light palette utilities directly, so keeping the mapping here makes the
+ * theme apply consistently to the whole page (cards, forms and content),
+ * not only to components that already have `dark:` classes.
+ */
+html.dark .bg-white {
+  background-color: #243044;
+}
+
+html.dark .bg-slate-50,
+html.dark .bg-slate-100 {
+  background-color: #172033;
+}
+
+html.dark .bg-blue-50,
+html.dark .bg-blue-100 {
+  background-color: #253b63;
+}
+
+html.dark .text-slate-950,
+html.dark .text-slate-900,
+html.dark .text-slate-800,
+html.dark .text-gray-900,
+html.dark .text-gray-800,
+html.dark .text-gray-700 {
+  color: #e8eef7;
+}
+
+html.dark .text-slate-700,
+html.dark .text-slate-600,
+html.dark .text-slate-500,
+html.dark .text-gray-600,
+html.dark .text-gray-500 {
+  color: #b6c2d2;
+}
+
+html.dark .border-slate-100,
+html.dark .border-slate-200,
+html.dark .border-slate-300,
+html.dark .border-gray-200,
+html.dark .border-gray-300 {
+  border-color: #46566d;
+}
+
+html.dark input,
+html.dark select,
+html.dark textarea {
+  background-color: #202c3f;
+  color: #e8eef7;
+}
+
+html.dark input::placeholder,
+html.dark textarea::placeholder {
+  color: #64748b;
 }
 
 *,

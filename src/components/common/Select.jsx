@@ -1,7 +1,14 @@
-function Select({ options, labelKey, valueKey }) {
+function Select({
+  options = [],
+  labelKey,
+  valueKey,
+  value,
+  placeholder = "-- Chọn --",
+  ...props
+}) {
   return (
-    <select>
-      <option value="">-- Chọn --</option>
+    <select value={value ?? ""} {...props}>
+      <option value="">{placeholder}</option>
       {options.map((item) => (
         <option key={item[valueKey]} value={item[valueKey]}>
           {item[labelKey]}
@@ -10,4 +17,5 @@ function Select({ options, labelKey, valueKey }) {
     </select>
   );
 }
+
 export default Select;

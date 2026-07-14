@@ -1,6 +1,6 @@
 "use client"
 import { getBrands } from '@/services/brandService';
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Select from './Select';
 
 export default function BrandSelect(props) {

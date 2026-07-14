@@ -3,13 +3,13 @@
 import ProductList from "@/components/shop/product/ProductList";
 import { getCategories } from "@/services/categoryService";
 import { getProducts } from "@/services/productService";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import Pagination from "@/components/common/Pagination";
 import Search from "@/components/shop/product/Search";
 import { SlidersHorizontal } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 
-export default function ProductsPage() {
+function ProductsContent() {
   const searchParams = useSearchParams();
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -104,5 +104,13 @@ export default function ProductsPage() {
         </aside>
       </> : null}
     </section>
+  );
+}
+
+export default function ProductsPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-slate-50 px-4 py-16 text-center text-slate-500">Đang tải sản phẩm...</div>}>
+      <ProductsContent />
+    </Suspense>
   );
 }

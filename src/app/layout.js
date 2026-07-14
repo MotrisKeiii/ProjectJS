@@ -1,11 +1,14 @@
-import { AuthProvider } from '@/context/AuthProvider';
-import './globals.css';
+import { AuthProvider } from "@/context/AuthProvider";
+import { ThemeProvider } from "@/context/ThemeProvider";
+import "./globals.css";
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="vi">
+    <html lang="vi" suppressHydrationWarning>
       <body>
-        <AuthProvider>{children}</AuthProvider>
+        <ThemeProvider>
+          <AuthProvider>{children}</AuthProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

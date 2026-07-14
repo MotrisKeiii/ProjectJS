@@ -1,15 +1,30 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import {
-  ArrowUp,
-  CreditCard,
-  Mail,
-  MapPin,
-  MessageCircle,
-  MessagesSquare,
-  Phone,
-} from "lucide-react";
+import { ArrowUp } from "lucide-react";
+
+const footerIcons = {
+  facebook: "https://img.icons8.com/color/48/facebook-new.png",
+  zalo: "https://img.icons8.com/color/48/zalo.png",
+  phone: "https://img.icons8.com/color/48/phone.png",
+  gmail: "https://img.icons8.com/color/48/gmail-new.png",
+  maps: "https://img.icons8.com/color/48/google-maps-new.png",
+};
+
+const paymentMethods = [
+  {
+    name: "Visa",
+    icon: "https://img.icons8.com/color/48/visa.png",
+  },
+  {
+    name: "Mastercard",
+    icon: "https://img.icons8.com/color/48/mastercard-logo.png",
+  },
+  {
+    name: "PayPal",
+    icon: "https://img.icons8.com/color/48/paypal.png",
+  },
+];
 
 export default function Footer() {
   const [showScrollTop, setShowScrollTop] = useState(false);
@@ -41,7 +56,7 @@ export default function Footer() {
                 <img
                   src="/icon.png"
                   alt="Motris Shop"
-                  className="h-11 w-11 rounded-xl object-cover shadow-md shadow-blue-200"
+                  className="h-11 w-11 rounded-xl object-cover"
                 />
 
                 <span>
@@ -68,7 +83,11 @@ export default function Footer() {
                   aria-label="Facebook"
                   className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-50 transition duration-300 hover:-translate-y-1 hover:bg-blue-100 hover:shadow-md"
                 >
-                  <MessageCircle className="h-6 w-6 text-blue-600" />
+                  <img
+                    src={footerIcons.facebook}
+                    alt=""
+                    className="h-7 w-7 object-contain"
+                  />
                 </a>
 
                 <a
@@ -78,7 +97,11 @@ export default function Footer() {
                   aria-label="Zalo"
                   className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-50 transition duration-300 hover:-translate-y-1 hover:bg-blue-100 hover:shadow-md"
                 >
-                  <MessagesSquare className="h-6 w-6 text-blue-600" />
+                  <img
+                    src={footerIcons.zalo}
+                    alt=""
+                    className="h-7 w-7 object-contain"
+                  />
                 </a>
 
                 <a
@@ -86,7 +109,11 @@ export default function Footer() {
                   aria-label="Gọi ngay"
                   className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-50 transition duration-300 hover:-translate-y-1 hover:bg-blue-100 hover:shadow-md"
                 >
-                  <Phone className="h-6 w-6 text-blue-600" />
+                  <img
+                    src={footerIcons.phone}
+                    alt=""
+                    className="h-7 w-7 object-contain"
+                  />
                 </a>
 
                 <a
@@ -94,7 +121,11 @@ export default function Footer() {
                   aria-label="Gmail"
                   className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-50 transition duration-300 hover:-translate-y-1 hover:bg-blue-100 hover:shadow-md"
                 >
-                  <Mail className="h-6 w-6 text-blue-600" />
+                  <img
+                    src={footerIcons.gmail}
+                    alt=""
+                    className="h-7 w-7 object-contain"
+                  />
                 </a>
               </div>
             </div>
@@ -216,7 +247,11 @@ export default function Footer() {
               <ul className="mt-5 space-y-5">
                 <li className="flex items-start gap-3">
                   <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-blue-50">
-                    <Phone className="h-5 w-5 text-blue-600" />
+                    <img
+                      src={footerIcons.phone}
+                      alt=""
+                      className="h-6 w-6 object-contain"
+                    />
                   </span>
 
                   <div>
@@ -235,7 +270,11 @@ export default function Footer() {
 
                 <li className="flex items-start gap-3">
                   <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-blue-50">
-                    <Mail className="h-5 w-5 text-blue-600" />
+                    <img
+                      src={footerIcons.gmail}
+                      alt=""
+                      className="h-6 w-6 object-contain"
+                    />
                   </span>
 
                   <div className="min-w-0">
@@ -254,7 +293,11 @@ export default function Footer() {
 
                 <li className="flex items-start gap-3">
                   <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-blue-50">
-                    <MapPin className="h-5 w-5 text-blue-600" />
+                    <img
+                      src={footerIcons.maps}
+                      alt=""
+                      className="h-6 w-6 object-contain"
+                    />
                   </span>
 
                   <div>
@@ -263,12 +306,12 @@ export default function Footer() {
                     </p>
 
                     <a
-                      href="https://www.google.com/maps/search/?api=1&query=123+Duong+ABC+Quan+1+Thanh+pho+Ho+Chi+Minh"
+                      href="https://maps.app.goo.gl/Npmxp4Wuhd96MMHz5"
                       target="_blank"
                       rel="noreferrer"
                       className="mt-1 block text-sm font-semibold leading-6 text-slate-600 transition hover:text-blue-600"
                     >
-                      123 Đường ABC, Quận 1, TP. Hồ Chí Minh
+                      Cao Đẳng Công Thương TP.HCM
                     </a>
                   </div>
                 </li>
@@ -280,13 +323,17 @@ export default function Footer() {
             <p>© 2026 HTSV Shop. All rights reserved.</p>
 
             <div className="flex items-center gap-3">
-              {["Visa", "Mastercard", "PayPal"].map((method) => (
+              {paymentMethods.map((method) => (
                 <span
-                  key={method}
+                  key={method.name}
                   className="inline-flex items-center gap-1 rounded-md border border-slate-200 bg-slate-50 px-2 py-1 text-xs font-semibold text-slate-500"
                 >
-                  <CreditCard className="h-4 w-4" />
-                  {method}
+                  <img
+                    src={method.icon}
+                    alt=""
+                    className="h-5 w-7 object-contain"
+                  />
+                  {method.name}
                 </span>
               ))}
             </div>
@@ -303,7 +350,7 @@ export default function Footer() {
           })
         }
         aria-label="Cuộn lên đầu trang"
-        className={`fixed bottom-6 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-blue-600 text-white shadow-lg shadow-blue-200 transition duration-300 hover:-translate-y-1 hover:bg-blue-700 ${
+        className={`fixed bottom-6 right-6 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-blue-600 text-white transition duration-300 hover:-translate-y-1 hover:bg-blue-700 ${
           showScrollTop
             ? "pointer-events-auto translate-y-0 opacity-100"
             : "pointer-events-none translate-y-4 opacity-0"

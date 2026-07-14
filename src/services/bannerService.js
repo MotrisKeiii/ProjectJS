@@ -13,9 +13,7 @@ export const getBannerById = async (id) => {
 export const createBanner = async (data) => {
     const res = await axiosInstance.post("/banners", data);
     return res.data;
-}//xoa [0] trong bannerController.js    
-// ham create:  res.status(201).json({ id: result[0].insertId, ...req.body });
-
+}
 export const updateBanner = async (id,data) => {
     const res = await axiosInstance.put(`/banners/${id}`, data);
     return res.data;

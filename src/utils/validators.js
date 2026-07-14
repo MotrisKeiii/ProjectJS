@@ -1,5 +1,3 @@
-import { data } from 'autoprefixer';
-
 export const validateRegister = ({
   username,
   fullname,
@@ -99,6 +97,11 @@ export const validateProduct = (data) => {
     } else if (Number(data.sale_price) > Number(data.price)) {
       errors.sale_price = "Giá khuyến mãi phải nhỏ hơn hoặc bằng giá";
     }
+  }
+
+  // image
+  if (!data.image || data.image.trim() === "") {
+    errors.image = "Vui lòng upload ảnh sản phẩm";
   }
 
   // trash

@@ -16,7 +16,7 @@ export default function AdminTable({ columns, data, onEdit, onDelete }) {
   ];
 
   const tableData = data.map((item, index) => ({
-    id: item.id || item.product_id,
+    id: item.id || item.product_id || item.cat_id || item.page_id || item.post_id,
     stt: index+1, 
     ...item,
     actions: (
